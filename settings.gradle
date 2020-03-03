@@ -1,0 +1,2 @@
+include ':app', ':progmalab'
+rootProject.name='test'
