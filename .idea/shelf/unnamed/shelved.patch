@@ -1,0 +1,211 @@
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(date 1583255718808)
++++ .idea/vcs.xml	(date 1583255718808)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: testutil/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- testutil/src/main/res/values/strings.xml	(date 1583255806849)
++++ testutil/src/main/res/values/strings.xml	(date 1583255806849)
+@@ -0,0 +1,3 @@
++<resources>
++    <string name="app_name">My Library</string>
++</resources>
+Index: settings.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>include ':app', ':progmalab'\r\nrootProject.name='test'\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- settings.gradle	(revision 863a1101b2a5bb1f639d81c7d0a1669ab5e8c51a)
++++ settings.gradle	(date 1583255806568)
+@@ -1,2 +1,2 @@
+-include ':app', ':progmalab'
++include ':app', ':progmalab', ':testutil'
+ rootProject.name='test'
+Index: testutil/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- testutil/build.gradle	(date 1583255807384)
++++ testutil/build.gradle	(date 1583255807384)
+@@ -0,0 +1,34 @@
++apply plugin: 'com.android.library'
++
++android {
++    compileSdkVersion 29
++    buildToolsVersion "29.0.2"
++
++
++    defaultConfig {
++        minSdkVersion 21
++        targetSdkVersion 29
++        versionCode 1
++        versionName "1.0"
++
++        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
++        consumerProguardFiles 'consumer-rules.pro'
++    }
++
++    buildTypes {
++        release {
++            minifyEnabled false
++            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
++        }
++    }
++
++}
++
++dependencies {
++    implementation fileTree(dir: 'libs', include: ['*.jar'])
++
++    implementation 'androidx.appcompat:appcompat:1.1.0'
++    testImplementation 'junit:junit:4.12'
++    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
++    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
++}
+Index: testutil/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- testutil/src/main/AndroidManifest.xml	(date 1583255807680)
++++ testutil/src/main/AndroidManifest.xml	(date 1583255807680)
+@@ -0,0 +1,2 @@
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.ru.progmaservice.testutil" />
+Index: testutil/src/test/java/com/ru/progmaservice/testutil/ExampleUnitTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- testutil/src/test/java/com/ru/progmaservice/testutil/ExampleUnitTest.java	(date 1583255807080)
++++ testutil/src/test/java/com/ru/progmaservice/testutil/ExampleUnitTest.java	(date 1583255807080)
+@@ -0,0 +1,17 @@
++package com.ru.progmaservice.testutil;
++
++import org.junit.Test;
++
++import static org.junit.Assert.*;
++
++/**
++ * Example local unit test, which will execute on the development machine (host).
++ *
++ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
++ */
++public class ExampleUnitTest {
++    @Test
++    public void addition_isCorrect() {
++        assertEquals(4, 2 + 2);
++    }
++}
+\ No newline at end of file
+Index: testutil/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- testutil/.gitignore	(date 1583255807190)
++++ testutil/.gitignore	(date 1583255807190)
+@@ -0,0 +1,1 @@
++/build
+Index: testutil/src/androidTest/java/com/ru/progmaservice/testutil/ExampleInstrumentedTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- testutil/src/androidTest/java/com/ru/progmaservice/testutil/ExampleInstrumentedTest.java	(date 1583255807601)
++++ testutil/src/androidTest/java/com/ru/progmaservice/testutil/ExampleInstrumentedTest.java	(date 1583255807601)
+@@ -0,0 +1,27 @@
++package com.ru.progmaservice.testutil;
++
++import android.content.Context;
++
++import androidx.test.platform.app.InstrumentationRegistry;
++import androidx.test.ext.junit.runners.AndroidJUnit4;
++
++import org.junit.Test;
++import org.junit.runner.RunWith;
++
++import static org.junit.Assert.*;
++
++/**
++ * Instrumented test, which will execute on an Android device.
++ *
++ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
++ */
++@RunWith(AndroidJUnit4.class)
++public class ExampleInstrumentedTest {
++    @Test
++    public void useAppContext() {
++        // Context of the app under test.
++        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
++
++        assertEquals("com.ru.progmaservice.testutil.test", appContext.getPackageName());
++    }
++}
+Index: testutil/proguard-rules.pro
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- testutil/proguard-rules.pro	(date 1583255807279)
++++ testutil/proguard-rules.pro	(date 1583255807279)
+@@ -0,0 +1,21 @@
++# Add project specific ProGuard rules here.
++# You can control the set of applied configuration files using the
++# proguardFiles setting in build.gradle.
++#
++# For more details, see
++#   http://developer.android.com/guide/developing/tools/proguard.html
++
++# If your project uses WebView with JS, uncomment the following
++# and specify the fully qualified class name to the JavaScript interface
++# class:
++#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
++#   public *;
++#}
++
++# Uncomment this to preserve the line number information for
++# debugging stack traces.
++#-keepattributes SourceFile,LineNumberTable
++
++# If you keep the line number information, uncomment this to
++# hide the original source file name.
++#-renamesourcefileattribute SourceFile
+Index: testutil/consumer-rules.pro
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- testutil/consumer-rules.pro	(date 1583255807333)
++++ testutil/consumer-rules.pro	(date 1583255807333)
+@@ -0,0 +1,0 @@
+Index: testutil/src/main/java/com/ru/progmaservice/testutil/dateutil.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- testutil/src/main/java/com/ru/progmaservice/testutil/dateutil.java	(date 1583256732761)
++++ testutil/src/main/java/com/ru/progmaservice/testutil/dateutil.java	(date 1583256732761)
+@@ -0,0 +1,5 @@
++package com.ru.progmaservice.testutil;
++
++public class dateutil {
++    
++}
