@@ -1,2 +1,2 @@
-include ':app', ':progmalab'
+include ':app', ':progmalab', ':testutil'
 rootProject.name='test'
